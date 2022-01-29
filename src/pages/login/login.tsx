@@ -19,7 +19,7 @@ const Login = () => {
   const onFinish = async (values: {username: string, password: string}) => {
     console.log(values)
     const { username, password } = values
-    const result = await axios({ url: '/api/login', method: 'POST', data: { username, password } })
+    const result = await axios({ url: 'login', method: 'POST', data: { username, password } })
   }
   return (
     <div className="login">

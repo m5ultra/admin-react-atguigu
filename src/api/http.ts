@@ -1,19 +1,14 @@
 import axios from 'axios'
 import * as qs from 'qs'
-
-switch (process.env.NODE_ENV) {
-  case 'production':
-    axios.defaults.baseURL = 'http://xxxx:8080'
-    break
-  default:
-    axios.defaults.baseURL = 'http://localhost:8080'
-}
+import { base } from '../conf'
 const defaultOptions = {
+  // @ts-ignore
+  baseURL: base[process.env.NODE_ENV].apiBaseUrl,
   timeout: 10000,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'token': 'this is token todo'
+    token: 'this is token todo',
   },
 }
 axios.interceptors.request.use(
