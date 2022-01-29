@@ -17,7 +17,7 @@ axios.interceptors.request.use(
     console.log(config, 'axios.interceptors.request')
     // 处理data数据
     config.transformRequest = [
-      (data: any, headers: any) => {
+      (data: any) => {
         return qs.stringify(data, {
           allowDots: true,
         })
@@ -46,7 +46,7 @@ axios.interceptors.response.use(
     return response
   },
   (error: any) => {
-    Promise.reject(error)
+    return Promise.reject(error)
   },
 )
 
