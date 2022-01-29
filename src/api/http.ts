@@ -1,25 +1,26 @@
-// http.js
 import axios from 'axios'
 import * as qs from 'qs'
 
-declare const SERVICE: string
-
-axios.defaults.baseURL = SERVICE
-axios.defaults.withCredentials = true
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-axios.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
-
-// qs 序列化 防止XSRF攻击 可以对深层次的json array进行序列化
+switch (process.env.NODE_ENV) {
+  case 'production':
+    axios.defaults.baseURL = 'http://xxxx:8080'
+    break
+  default:
+    axios.defaults.baseURL = 'http://localhost:8080'
+}
+const defaultOptions = {
+  timeout: 10000,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'token': 'this is token todo'
+  },
+}
 axios.interceptors.request.use(
   (config: any): any => {
-    if (config.url.indexOf('?') !== -1) {
-      config.url += `&t=${new Date().getTime()}`
-    } else {
-      config.url += `?t=${new Date().getTime()}`
-    }
-    // `transformRequest` 允许在向服务器发送前，修改请求数据
-    // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
-    // 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream
+    Object.assign(config, defaultOptions)
+    console.log(config, 'axios.interceptors.request')
+    // 处理data数据
     config.transformRequest = [
       (data: any, headers: any) => {
         return qs.stringify(data, {
@@ -27,7 +28,7 @@ axios.interceptors.request.use(
         })
       },
     ]
-    // `paramsSerializer` 是一个负责 `params` 序列化的函数
+    // 处理query参数
     config.paramsSerializer = (params: any) => {
       return qs.stringify(params, {
         arrayFormat: 'repeat',
@@ -43,8 +44,9 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response: any): any => {
     const { data } = response
+    console.log(data, 'axios.interceptors.response')
     if (data.code === 2) {
-      window.location.href = `/login?from=${window.location.pathname}`
+      window.location.href = ``
     }
     return response
   },
