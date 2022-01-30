@@ -71,20 +71,29 @@ const service = axios.create({
   ],
   transformResponse: [
     (data) => {
-      if (typeof data === 'string' && data.startsWith('{')) { // 处理返回
+      if (typeof data === 'string' && data.startsWith('{')) {
+        // 处理返回
         data = JSON.parse(data)
       }
       return data
     },
   ],
 })
-
+service.defaults.headers.post['Content-Type'] = 'application/json'
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     let token = localStorage.getItem('token') // 获取本地token
     if (token) {
       config.headers!.Authorization = `${token}`
     }
+    // 在这里：可以根据业务需求可以在发送请求之前做些什么:例如我这个是导出文件的接口，因为返回的是二进制流，所以需要设置请求响应类型为blob，就可以在此处设置。
+    // if (config.url!.includes('pur/contract/export')) {
+    //   config.headers!['responseType'] = 'blob'
+    // }
+    // 我这里是文件上传，发送的是二进制流，所以需要设置请求头的'Content-Type'
+    // if (config.url!.includes('pur/contract/upload')) {
+    //   config.headers!['Content-Type'] = 'multipart/form-data'
+    // }
     return config
   },
   (error) => {
@@ -99,9 +108,7 @@ service.interceptors.response.use(
   // 响应拦截器
   (response: AxiosResponse) => {
     const status = response.status
-
     let msg = ''
-
     if (status < 200 || status >= 300) {
       // 处理http错误，抛到业务代码
       msg = showStatus(status)
