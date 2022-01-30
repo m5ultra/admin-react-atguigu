@@ -1,9 +1,9 @@
-export const base =  {
+export const base = {
   development: {
-    'xx': 'oo',
-    baseUrl: 'http://localhost:8080/api/'
+    baseURL: 'http://localhost:8080/api/',
+    xx: 'oo',
   },
   production: {
-    baseUrl: 'http://xxxxssss:8080'
-  }
+    baseURL: 'http://xxxxssss:8080',
+  },
 }

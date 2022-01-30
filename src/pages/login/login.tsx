@@ -3,7 +3,6 @@ import logo from './images/logo.png'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import Axios from '../../api/http'
-import { useEffect } from 'react'
 /**
  用户名/密码的合法性要求
  * 1.必须输入
@@ -13,13 +12,10 @@ import { useEffect } from 'react'
  * 5.验证密码一致性
  */
 const Login = () => {
-  useEffect(() => {
-    console.log(Axios, 'useEffect')
-  }, [])
   const onFinish = async (values: {username: string, password: string}) => {
-    console.log(values)
     const { username, password } = values
     const result = await Axios({ url: 'login', method: 'POST', data: { username, password } })
+    console.log(result, '9090')
   }
   return (
     <div className="login">
@@ -69,28 +65,28 @@ const Login = () => {
             <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" />
           </Form.Item>
 
-          <Form.Item
-            name="confirm_password"
-            rules={[
-              ({ getFieldValue }) => ({
-                validator(_, confirm_password) {
-                  if (!confirm_password) {
-                    return Promise.reject(new Error('确认密码不能为空'))
-                  }
-                  if (!confirm_password || getFieldValue('password') === confirm_password) {
-                    return Promise.resolve()
-                  }
-                  return Promise.reject(new Error('两次数码密码不一致'))
-                },
-              }),
-            ]}
-          >
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Confirm Password"
-            />
-          </Form.Item>
+          {/*<Form.Item*/}
+          {/*  name="confirm_password"*/}
+          {/*  rules={[*/}
+          {/*    ({ getFieldValue }) => ({*/}
+          {/*      validator(_, confirm_password) {*/}
+          {/*        if (!confirm_password) {*/}
+          {/*          return Promise.reject(new Error('确认密码不能为空'))*/}
+          {/*        }*/}
+          {/*        if (!confirm_password || getFieldValue('password') === confirm_password) {*/}
+          {/*          return Promise.resolve()*/}
+          {/*        }*/}
+          {/*        return Promise.reject(new Error('两次数码密码不一致'))*/}
+          {/*      },*/}
+          {/*    }),*/}
+          {/*  ]}*/}
+          {/*>*/}
+          {/*  <Input*/}
+          {/*    prefix={<LockOutlined className="site-form-item-icon" />}*/}
+          {/*    type="password"*/}
+          {/*    placeholder="Confirm Password"*/}
+          {/*  />*/}
+          {/*</Form.Item>*/}
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
               Log in

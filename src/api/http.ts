@@ -78,13 +78,15 @@ const showStatus = (status: number) => {
   }
   return `${message}，请检查网络或联系管理员！`
 }
-
+// @ts-ignore
+const { baseURL } = base[process.env.NODE_ENV]
 const service = axios.create({
   // @ts-ignore
-  baseURL: base[process.env.NODE_ENV].baseURL, // baseUrl e.g: http://localhost:8080/api/
+  baseURL, // baseUrl e.g: http://localhost:8080/api/
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
-    'Content-Type': 'application/x-www-form-urlencoded',
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
   },
   withCredentials: true, // 是否跨站点访问控制请求
   timeout: 30000, // 超时时间
@@ -109,7 +111,7 @@ const service = axios.create({
     },
   ],
 })
-service.defaults.headers.post['Content-Type'] = 'application/json'
+// service.defaults.headers.post['Content-Type'] = 'application/json'
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     removePending(config) // 在请求开始前，对之前的请求做检查取消操作
