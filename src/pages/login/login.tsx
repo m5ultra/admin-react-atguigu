@@ -12,9 +12,9 @@ import Axios from '../../api/http'
  * 5.验证密码一致性
  */
 const Login = () => {
-  const onFinish = async (values: {username: string, password: string}) => {
+  const onFinish = async (values: { username: string; password: string }) => {
     const { username, password } = values
-    const result = await Axios({ url: 'login', method: 'POST', data: { username, password } })
+    const result = await Axios()({ url: 'login', method: 'POST', data: { username, password } })
     console.log(result, '9090')
   }
   return (

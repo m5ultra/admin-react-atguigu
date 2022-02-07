@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "ISC",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development vite",
+    "dev": "cross-env NODE_ENV=development vite --host",
     "build": "cross-env NODE_ENV=production tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint \"{src,apps,libs,test}/**/*.{ts,tsx}\" --fix",
