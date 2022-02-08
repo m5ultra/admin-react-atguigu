@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-// 使用了按需引入功能
+// 使用了按需引入功能 这个就不需要了
 // import 'antd/dist/antd.less'
 import './assets/css/reset.css'
 const vm =

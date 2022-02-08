@@ -2,7 +2,7 @@ import './login.less'
 import logo from './images/logo.png'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import Axios from '../../api/http'
+import { handleLogin } from '../../api'
 /**
  用户名/密码的合法性要求
  * 1.必须输入
@@ -14,7 +14,7 @@ import Axios from '../../api/http'
 const Login = () => {
   const onFinish = async (values: { username: string; password: string }) => {
     const { username, password } = values
-    const result = await Axios()({ url: 'login', method: 'POST', data: { username, password } })
+    const result = await handleLogin(username, password)
     console.log(result, '9090')
   }
   return (

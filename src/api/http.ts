@@ -1,7 +1,8 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 import * as qs from 'qs'
 import { base } from '../conf'
 import { message } from 'antd'
+// 处理错误信息
 const showStatus = (status: number) => {
   let message: string
   switch (status) {
@@ -43,7 +44,10 @@ const showStatus = (status: number) => {
   }
   return `${message}，请检查网络或联系管理员！`
 }
+let loadingCount: number = 0 // 通过loadingCount控制是否显示loading
+// 初始化map对象 pending
 const pending = new Map()
+// ...
 const addPending = (config: AxiosRequestConfig) => {
   const url = [config.method, config.url, qs.stringify(config.params), qs.stringify(config.data)].join('&')
   config.cancelToken =
@@ -55,7 +59,7 @@ const addPending = (config: AxiosRequestConfig) => {
       }
     })
 }
-
+// ...
 const removePending = (config: AxiosRequestConfig) => {
   const url = [config.method, config.url, qs.stringify(config.params), qs.stringify(config.data)].join('&')
   if (pending.has(url)) {
@@ -65,14 +69,32 @@ const removePending = (config: AxiosRequestConfig) => {
     pending.delete(url)
   }
 }
-
+// 清除所有 pending
 export const clearPending = () => {
   for (const [url, cancel] of pending) {
     cancel(url)
   }
   pending.clear()
 }
-export default () => {
+export enum Methods {
+  POST,
+  GET,
+  DELETE,
+  PUT,
+  PATCH,
+}
+
+// TODO 默认倒出一个参数 接受有些参数 做些默认配置...
+const defaultConf = {
+  isShowLoading: true,
+  method: Methods.POST,
+}
+
+interface IConf {
+  isShowLoading: boolean
+  method: Partial<Methods>
+}
+export default (conf: IConf = defaultConf) => {
   /**
    * 1. 初始化一个service
    * 2. 可以自动取消请求 用户可以通过配置取消请求 // https://developer.huawei.com/consumer/cn/forum/topic/0202545523679410023 // TODO 待验证
@@ -81,10 +103,9 @@ export default () => {
    * 5. 增加一层统一处理数据 把所有请求单独放一个文件
    * 6. 持续优化 比如抽成小文件...
    */
-
   // @ts-ignore
   const { baseURL } = base[process.env.NODE_ENV]
-  const service = axios.create({
+  const service: AxiosInstance = axios.create({
     // @ts-ignore
     baseURL, // baseUrl e.g: http://localhost:8080/api/
     headers: {
@@ -118,6 +139,7 @@ export default () => {
   // service.defaults.headers.post['Content-Type'] = 'application/json'
   service.interceptors.request.use(
     (config: AxiosRequestConfig) => {
+      loadingCount++
       removePending(config) // 在请求开始前，对之前的请求做检查取消操作
       addPending(config) // 将当前请求添加到 pending 中
       let token = localStorage.getItem('token') // 获取本地token
@@ -145,6 +167,7 @@ export default () => {
   service.interceptors.response.use(
     // 响应拦截器
     async (response: AxiosResponse) => {
+      loadingCount--
       removePending(response) // 在请求结束后，移除本次请求
       const status = response.status
       let msg = ''
