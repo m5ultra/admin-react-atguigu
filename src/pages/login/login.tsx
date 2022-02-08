@@ -2,7 +2,7 @@ import './login.less'
 import logo from './images/logo.png'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { handleLogin } from '../../api'
+import { handleLogin } from '/src/api'
 /**
  用户名/密码的合法性要求
  * 1.必须输入
