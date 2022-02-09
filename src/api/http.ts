@@ -1,7 +1,7 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios'
 import * as qs from 'qs'
-import { base } from '../conf'
-import { message } from 'antd'
+import {base} from '../conf'
+import {message} from 'antd'
 // 处理错误信息
 const showStatus = (status: number) => {
   let message: string
@@ -77,11 +77,11 @@ export const clearPending = () => {
   pending.clear()
 }
 export enum Methods {
-  POST,
-  GET,
-  DELETE,
-  PUT,
-  PATCH,
+  POST='POST',
+  GET = 'GET',
+  DELETE = 'DELETE',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
 }
 
 // TODO 默认倒出一个参数 接受有些参数 做些默认配置...
@@ -154,7 +154,7 @@ export default (conf: IConf = defaultConf) => {
       // if (config.url!.includes('pur/contract/upload')) {
       //   config.headers!['Content-Type'] = 'multipart/form-data'
       // }
-      return config
+      return Object.assign({}, config, defaultConf)
     },
     (error) => {
       // 错误抛到业务代码

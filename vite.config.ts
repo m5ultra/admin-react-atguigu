@@ -46,6 +46,7 @@ export default defineConfig({
     alias: { // TODO: not work 不一定是最优选择 文件不能跳转是个坑
       '@': path.resolve(__dirname, 'src'), // src 路径
       // 'pages': path.resolve(__dirname, 'pages')
+      'api': path.resolve(__dirname, 'src/api')
     },
   },
 })
