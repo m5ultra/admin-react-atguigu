@@ -3,7 +3,9 @@ import logo from './images/logo.png'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 // @ts-ignore
-import { handleLogin } from 'api'
+import { handleLogin } from '../../api'
+import { useNavigate } from 'react-router-dom'
+
 /**
  用户名/密码的合法性要求
  * 1.必须输入
@@ -13,10 +15,13 @@ import { handleLogin } from 'api'
  * 5.验证密码一致性
  */
 const Login = () => {
+  let navigate = useNavigate()
   const onFinish = async (values: { username: string; password: string }) => {
     const { username, password } = values
     const result = await handleLogin(username, password)
-    console.log(result, '9090')
+    if (+result.status === 0) {
+      navigate('/admin', { replace: true })
+    }
   }
   return (
     <div className="login">

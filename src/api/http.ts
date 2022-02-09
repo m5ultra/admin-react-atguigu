@@ -181,7 +181,7 @@ export default (conf: IConf = defaultConf) => {
         }
       }
       if (+response.data.status === 0) {
-        return response.data.data
+        return response.data
       } else if (+response.data.status === 1) {
         await message.warning(response.data.msg)
         return response.data.msg
