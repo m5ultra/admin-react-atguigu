@@ -1,11 +1,11 @@
-import './login.less'
-import logo from './images/logo.png'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import './login.less'
+import logo from './images/logo.png'
 // @ts-ignore
 import { handleLogin } from '../../api'
-import { useNavigate } from 'react-router-dom'
-
+import memoryUtils from '../../utils/memoryUtils'
 /**
  用户名/密码的合法性要求
  * 1.必须输入
@@ -19,6 +19,7 @@ const Login = () => {
   const onFinish = async (values: { username: string; password: string }) => {
     const { username, password } = values
     const result = await handleLogin(username, password)
+    memoryUtils.user = result.data
     if (+result.status === 0) {
       navigate('/admin', { replace: true })
     }
