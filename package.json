@@ -10,12 +10,14 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "@types/store": "^2.0.2",
     "antd": "^4.18.5",
     "axios": "^0.25.0",
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "store": "^2.0.12"
   },
   "devDependencies": {
     "@types/node": "^17.0.13",

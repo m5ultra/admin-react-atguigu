@@ -6,6 +6,7 @@ import logo from './images/logo.png'
 // @ts-ignore
 import { handleLogin } from '../../api'
 import memoryUtils from '../../utils/memoryUtils'
+import storageUtils from '../../utils/storageUtils'
 /**
  用户名/密码的合法性要求
  * 1.必须输入
@@ -20,6 +21,7 @@ const Login = () => {
     const { username, password } = values
     const result = await handleLogin(username, password)
     memoryUtils.user = result.data
+    storageUtils.saveUser(result.data)
     if (+result.status === 0) {
       navigate('/admin', { replace: true })
     }

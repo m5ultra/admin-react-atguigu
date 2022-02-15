@@ -6,11 +6,11 @@ const Admin = () => {
   const navigate = useNavigate()
   const user = memoryUtils.user
   useEffect(() => {
-    if (!user._id) {
+    if (!user?._id) {
       return navigate('/')
     }
-  }, [user._id])
-  return <>{user.username}</>
+  }, [user?._id])
+  return <>{user?.username}</>
 }
 
 export default Admin
