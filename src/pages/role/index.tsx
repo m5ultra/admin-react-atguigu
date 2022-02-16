@@ -1,5 +1,5 @@
-const User = () => {
-  return <>User</>
+const Role = () => {
+  return <>Role</>
 }
 
-export default User
+export default Role

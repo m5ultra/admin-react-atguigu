@@ -21,7 +21,7 @@ const LeftNav = () => {
         </div>
       </Link>
       <Menu
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={['/home']}
         defaultOpenKeys={['sub1']}
         mode="inline"
         theme="dark"
@@ -30,13 +30,19 @@ const LeftNav = () => {
          <Link to={'/'}> 首页</Link>
         </Menu.Item>
         <SubMenu key="sub1" icon={<MailOutlined />} title="商品">
-          <Menu.Item key="2">
+          <Menu.Item key="/category">
             <Link to={'category'}>品类管理</Link>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="/product">
             <Link to={'product'}>商品管理</Link>
           </Menu.Item>
         </SubMenu>
+        <Menu.Item key="/user" icon={<PieChartOutlined />}>
+          <Link to={'user'}>用户管理</Link>
+        </Menu.Item>
+        <Menu.Item key="/role" icon={<PieChartOutlined />}>
+          <Link to={'role'}>角色管理</Link>
+        </Menu.Item>
       </Menu>
     </Fragment>
   )

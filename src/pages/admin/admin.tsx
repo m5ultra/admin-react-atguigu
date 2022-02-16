@@ -20,7 +20,7 @@ const Admin = () => {
   const user = memoryUtils.user
   useEffect(() => {
     if (!user?._id) {
-      return navigate('/home')
+      return navigate('/')
     }
   }, [user?._id])
   // return <>{user?.username}</>
