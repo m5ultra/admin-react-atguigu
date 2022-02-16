@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Menu } from 'antd'
-import { Fragment, useState } from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { PieChartOutlined, MailOutlined } from '@ant-design/icons'
 
 import './index.less'
@@ -8,6 +8,10 @@ import Logo from '../../assets/images/logo.png'
 const { SubMenu } = Menu
 
 const LeftNav = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate('/admin')
+  }, [])
   return (
     <Fragment>
       <Link to={'/'} className={'left-nav'}>
