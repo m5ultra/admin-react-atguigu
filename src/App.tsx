@@ -10,7 +10,7 @@ export default () => {
       <Router>
         <Routes>
           <Route index element={<Login />} />
-          <Route path={'/admin'} element={<Admin />} />
+          <Route path={'/admin/*'} element={<Admin />} />
         </Routes>
       </Router>
     </>
