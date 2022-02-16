@@ -1,8 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Menu } from 'antd'
-import {Fragment, useEffect, useState} from 'react'
-import { PieChartOutlined, MailOutlined } from '@ant-design/icons'
-
+import { Fragment, useEffect } from 'react'
+import menuList from '../../conf/menu.config'
 import './index.less'
 import Logo from '../../assets/images/logo.png'
 const { SubMenu } = Menu
@@ -20,29 +19,23 @@ const LeftNav = () => {
           <h1>谷粒后台</h1>
         </div>
       </Link>
-      <Menu
-        defaultSelectedKeys={['/home']}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-        theme="dark"
-      >
-        <Menu.Item key="1" icon={<PieChartOutlined />}>
-         <Link to={'/'}> 首页</Link>
-        </Menu.Item>
-        <SubMenu key="sub1" icon={<MailOutlined />} title="商品">
-          <Menu.Item key="/category">
-            <Link to={'category'}>品类管理</Link>
-          </Menu.Item>
-          <Menu.Item key="/product">
-            <Link to={'product'}>商品管理</Link>
-          </Menu.Item>
-        </SubMenu>
-        <Menu.Item key="/user" icon={<PieChartOutlined />}>
-          <Link to={'user'}>用户管理</Link>
-        </Menu.Item>
-        <Menu.Item key="/role" icon={<PieChartOutlined />}>
-          <Link to={'role'}>角色管理</Link>
-        </Menu.Item>
+      <Menu defaultSelectedKeys={['home']} defaultOpenKeys={['products']} mode="inline" theme="dark">
+        {menuList.map((item) => {
+          // 生成左侧菜单
+          return item?.children?.length ? (
+            <SubMenu key={item.key} icon={item.icon} title={item.title}>
+              {item?.children?.map((c) => (
+                <Menu.Item key={c.key}>
+                  <Link to={c.key}>{c.title}</Link>
+                </Menu.Item>
+              ))}
+            </SubMenu>
+          ) : (
+            <Menu.Item key={item.key} icon={item.icon}>
+              <Link to={item.key}> {item.title}</Link>{' '}
+            </Menu.Item>
+          )
+        })}
       </Menu>
     </Fragment>
   )
