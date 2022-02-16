@@ -8,10 +8,6 @@ import Logo from '../../assets/images/logo.png'
 const { SubMenu } = Menu
 
 const LeftNav = () => {
-  const [collapsed, setCollapsed] = useState(true)
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed)
-  }
   return (
     <Fragment>
       <Link to={'/'} className={'left-nav'}>
@@ -27,11 +23,15 @@ const LeftNav = () => {
         theme="dark"
       >
         <Menu.Item key="1" icon={<PieChartOutlined />}>
-          首页
+         <Link to={'/'}> 首页</Link>
         </Menu.Item>
         <SubMenu key="sub1" icon={<MailOutlined />} title="商品">
-          <Menu.Item key="2">品类管理</Menu.Item>
-          <Menu.Item key="3">商品管理</Menu.Item>
+          <Menu.Item key="2">
+            <Link to={'category'}>品类管理</Link>
+          </Menu.Item>
+          <Menu.Item key="3">
+            <Link to={'product'}>商品管理</Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
     </Fragment>
