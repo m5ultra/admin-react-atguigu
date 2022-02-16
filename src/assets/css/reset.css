@@ -48,9 +48,12 @@ select {
 
 html {
   box-sizing: border-box;
+  outline: none;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -76,7 +79,8 @@ th {
 a {
   text-decoration: none;
 }
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -86,5 +90,3 @@ html, body {
   width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, MIcrosoft YaHei, sans-serif !important;
 }
-
-
