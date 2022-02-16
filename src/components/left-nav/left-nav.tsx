@@ -16,7 +16,7 @@ const LeftNav = () => {
       <Link to={'/admin/home'} className={'left-nav'}>
         <div className="left-nav-header">
           <img src={Logo} alt="LOGO" />
-          <h1>谷粒后台</h1>
+          <h1>異星災變2</h1>
         </div>
       </Link>
       <Menu defaultSelectedKeys={['home']} defaultOpenKeys={['products']} mode="inline" theme="dark">
