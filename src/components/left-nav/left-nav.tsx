@@ -25,7 +25,7 @@ const LeftNav = () => {
           return item?.children?.length ? (
             <SubMenu key={item.key} icon={item.icon} title={item.title}>
               {item?.children?.map((c) => (
-                <Menu.Item key={c.key}>
+                <Menu.Item key={c.key} icon={c.icon}>
                   <Link to={c.key}>{c.title}</Link>
                 </Menu.Item>
               ))}
