@@ -55,6 +55,9 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+  /*Safari有个轮廓线*/
+  outline: none;
+
 }
 
 img,
