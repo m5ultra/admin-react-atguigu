@@ -9,11 +9,11 @@ const { SubMenu } = Menu
 const LeftNav = () => {
   const navigate = useNavigate()
   useEffect(() => {
-    navigate('/admin')
+    navigate('/admin/home')
   }, [])
   return (
     <Fragment>
-      <Link to={'/'} className={'left-nav'}>
+      <Link to={'/admin/home'} className={'left-nav'}>
         <div className="left-nav-header">
           <img src={Logo} alt="LOGO" />
           <h1>谷粒后台</h1>

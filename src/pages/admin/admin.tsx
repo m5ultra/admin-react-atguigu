@@ -33,7 +33,7 @@ const Admin = () => {
         <Header />
         <Content style={{ background: '#fff' }}>
           <Routes>
-            <Route index element={<Home />} />
+            <Route path={'/home'} element={<Home />} />
             <Route path={'/category'} element={<Category />} />
             <Route path={'/product'} element={<Product />} />
             <Route path={'/role'} element={<Role />} />
