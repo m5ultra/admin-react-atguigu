@@ -1,6 +1,6 @@
 import {
-  HomeOutlined,
-  AppstoreOutlined,
+  HomeFilled,
+  AppstoreFilled,
   BarsOutlined,
   ToolOutlined,
   UsergroupDeleteOutlined,
@@ -15,13 +15,13 @@ const menuList = [
   {
     title: '首页', // 菜单标题名称
     key: 'home', // 对应的path
-    icon: <HomeOutlined />, // 图标名称
+    icon: <HomeFilled />, // 图标名称
     isPublic: true, // 公开的
   },
   {
     title: '商品',
     key: 'products',
-    icon: <AppstoreOutlined />,
+    icon: <AppstoreFilled />,
     children: [
       // 子菜单列表
       {
