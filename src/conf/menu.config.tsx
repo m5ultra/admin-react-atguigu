@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import {
   HomeFilled,
   AppstoreFilled,
@@ -11,6 +12,19 @@ import {
   PieChartOutlined,
 } from '@ant-design/icons'
 
+export interface IMenuChild {
+  title: string
+  key: string
+  icon: ReactNode
+}
+export interface IMenuItem {
+  title: string
+  key: string
+  icon: ReactNode
+  isPublic?: boolean
+  children?: IMenuChild[]
+
+}
 const menuList = [
   {
     title: '首页', // 菜单标题名称
