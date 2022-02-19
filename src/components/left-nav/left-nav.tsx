@@ -16,11 +16,12 @@ const LeftNav = () => {
     return menuList.map((item: IMenuItem) =>
       item?.children?.length ? (
         <SubMenu key={item.key} icon={item.icon} title={item.title}>
-          {item?.children?.map((c: IMenuChild) => (
-            <Menu.Item key={c.key} icon={c.icon}>
-              <Link to={c.key}>{c.title}</Link>
-            </Menu.Item>
-          ))}
+          {/*{item.children.map((c: IMenuChild) => (*/}
+          {/*  <Menu.Item key={c.key} icon={c.icon}>*/}
+          {/*    <Link to={c.key}>{c.title}</Link>*/}
+          {/*  </Menu.Item>*/}
+          {/*))}*/}
+          {getMenuNodes(item.children)}
         </SubMenu>
       ) : (
         <Menu.Item key={item.key} icon={item.icon}>
