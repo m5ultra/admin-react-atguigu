@@ -1,11 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Menu } from 'antd'
-import { Fragment, ReactNode, useEffect } from 'react'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
 import menuList, { IMenuItem } from '../../conf/menu.config'
 import './index.less'
 import Logo from '../../assets/images/logo.png'
 const { SubMenu } = Menu
 const LeftNav = () => {
+  const [selectedKeys, setSelectedKeys] = useState(['home'])
   const navigate = useNavigate()
   useEffect(() => {
     navigate('/admin/home')
@@ -31,7 +32,7 @@ const LeftNav = () => {
     return menuList.reduce((v: ReactNode[], item) => {
       if (!item.children) {
         v.push(
-          <Menu.Item key={item.key} icon={item.icon}>
+          <Menu.Item onClick={() => setSelectedKeys([item.key])} key={item.key} icon={item.icon}>
             <Link to={item.key}> {item.title}</Link>{' '}
           </Menu.Item>,
         )
@@ -48,13 +49,19 @@ const LeftNav = () => {
 
   return (
     <Fragment>
-      <Link to={'/admin/home'} className={'left-nav'}>
+      <Link to={'/admin/home'} onClick={() => setSelectedKeys(['home'])} className={'left-nav'}>
         <div className="left-nav-header">
           <img src={Logo} alt="LOGO" />
           <h1>異星災變2</h1>
         </div>
       </Link>
-      <Menu defaultSelectedKeys={['home']} defaultOpenKeys={['products']} mode="inline" theme="dark">
+      <Menu
+        defaultSelectedKeys={['home']}
+        selectedKeys={selectedKeys}
+        defaultOpenKeys={['products']}
+        mode="inline"
+        theme="dark"
+      >
         {getMenuNodes2(menuList)}
       </Menu>
     </Fragment>
