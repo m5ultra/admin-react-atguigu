@@ -29,7 +29,6 @@ const LeftNav = () => {
   const getMenuNodes2 = (menuList: IMenuItem[]) => {
     // reduce((previousValue, currentValue, currentIndex, array) => { /* ... */ }, initialValue)
     return menuList.reduce((v: ReactNode[], item) => {
-      debugger
       if (!item.children) {
         v.push(
           <Menu.Item key={item.key} icon={item.icon}>
@@ -46,6 +45,7 @@ const LeftNav = () => {
       return v
     }, [])
   }
+
   return (
     <Fragment>
       <Link to={'/admin/home'} className={'left-nav'}>
