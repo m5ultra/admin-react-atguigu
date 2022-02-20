@@ -5,11 +5,20 @@ import menuList, { IMenuItem } from '../../conf/menu.config'
 import './index.less'
 import Logo from '../../assets/images/logo.png'
 const { SubMenu } = Menu
+
 const LeftNav = () => {
   const [selectedKeys, setSelectedKeys] = useState(['home'])
+  let defaultOpenKeys = ['products']
   const navigate = useNavigate()
+  const pathname = localStorage.getItem('currentPath')?.split('/admin/')[1] || 'home'
+  if (pathname.indexOf('charts') > -1) {
+    defaultOpenKeys = ['charts']
+  } else if (pathname.indexOf('products') > -1) {
+    defaultOpenKeys = ['products']
+  }
   useEffect(() => {
-    navigate('/admin/home')
+    setSelectedKeys([pathname])
+    navigate(`/admin/${pathname}`)
   }, [])
 
   // 生成左侧菜单 map + 递归（Recursion）
@@ -21,7 +30,7 @@ const LeftNav = () => {
         </SubMenu>
       ) : (
         <Menu.Item key={item.key} icon={item.icon}>
-          <Link to={item.key}> {item.title}</Link>{' '}
+          <Link to={item.key}> {item.title}</Link>
         </Menu.Item>
       ),
     )
@@ -32,13 +41,13 @@ const LeftNav = () => {
     return menuList.reduce((v: ReactNode[], item) => {
       if (!item.children) {
         v.push(
-          <Menu.Item onClick={() => setSelectedKeys([item.key])} key={item.key} icon={item.icon}>
-            <Link to={item.key}> {item.title}</Link>{' '}
+          <Menu.Item onClick={() => handleSetSelectedKeys(item.key)} key={item.key} icon={item.icon}>
+            <Link to={item.key}> {item.title}</Link>
           </Menu.Item>,
         )
       } else {
         v.push(
-          <SubMenu key={item.key} icon={item.icon} title={item.title}>
+          <SubMenu key={item.key} onTitleClick={() => handleTitleClick(item.key)} icon={item.icon} title={item.title}>
             {getMenuNodes2(item.children)}
           </SubMenu>,
         )
@@ -46,22 +55,28 @@ const LeftNav = () => {
       return v
     }, [])
   }
+  const handleTitleClick = (currentKey: string) => {
+    if (currentKey === 'products') {
+      defaultOpenKeys = ['products']
+    } else if (currentKey === 'charts') {
+      defaultOpenKeys = ['charts']
+    }
+  }
+  const handleSetSelectedKeys = (keys: string) => {
+    const pathname = location.pathname
+    localStorage.setItem('currentPath', pathname)
+    setSelectedKeys([keys])
+  }
 
   return (
     <Fragment>
-      <Link to={'/admin/home'} onClick={() => setSelectedKeys(['home'])} className={'left-nav'}>
+      <Link to={'/admin/home'} onClick={() => handleSetSelectedKeys('home')} className={'left-nav'}>
         <div className="left-nav-header">
           <img src={Logo} alt="LOGO" />
           <h1>異星災變2</h1>
         </div>
       </Link>
-      <Menu
-        defaultSelectedKeys={['home']}
-        selectedKeys={selectedKeys}
-        defaultOpenKeys={['products']}
-        mode="inline"
-        theme="dark"
-      >
+      <Menu selectedKeys={selectedKeys} defaultOpenKeys={defaultOpenKeys} mode="inline" theme="dark">
         {getMenuNodes2(menuList)}
       </Menu>
     </Fragment>

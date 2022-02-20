@@ -34,13 +34,13 @@ const Admin = () => {
         <Content style={{ background: '#fff' }}>
           <Routes>
             <Route path={'/home'} element={<Home />} />
-            <Route path={'/category'} element={<Category />} />
-            <Route path={'/product'} element={<Product />} />
+            <Route path={'products/category'} element={<Category />} />
+            <Route path={'products/product'} element={<Product />} />
             <Route path={'/role'} element={<Role />} />
             <Route path={'/user'} element={<User />} />
-            <Route path={'/bar'} element={<Bar />} />
-            <Route path={'/line'} element={<Line />} />
-            <Route path={'/pie'} element={<Pie />} />
+            <Route path={'charts/bar'} element={<Bar />} />
+            <Route path={'charts/line'} element={<Line />} />
+            <Route path={'charts/pie'} element={<Pie />} />
           </Routes>
         </Content>
         <Footer
