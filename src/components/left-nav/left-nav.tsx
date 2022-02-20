@@ -8,7 +8,7 @@ const { SubMenu } = Menu
 
 const LeftNav = () => {
   const [selectedKeys, setSelectedKeys] = useState(['home'])
-  let defaultOpenKeys = ['products']
+  let defaultOpenKeys: string[] = []
   const navigate = useNavigate()
   const pathname = localStorage.getItem('currentPath')?.split('/admin/')[1] || 'home'
   if (pathname.indexOf('charts') > -1) {
