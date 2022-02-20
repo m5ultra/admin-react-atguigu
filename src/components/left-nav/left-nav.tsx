@@ -10,6 +10,7 @@ const LeftNav = () => {
   const [selectedKeys, setSelectedKeys] = useState(['home'])
   let defaultOpenKeys: string[] = []
   const navigate = useNavigate()
+
   const pathname = localStorage.getItem('currentPath')?.split('/admin/')[1] || 'home'
   if (pathname.indexOf('charts') > -1) {
     defaultOpenKeys = ['charts']
