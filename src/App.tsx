@@ -9,8 +9,8 @@ export default () => {
       {loader}
       <Router>
         <Routes>
-          <Route index element={<Login />} />
           <Route path={'/admin/*'} element={<Admin />} />
+          <Route index element={<Login />} />
         </Routes>
       </Router>
     </>
