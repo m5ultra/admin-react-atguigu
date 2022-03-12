@@ -22,7 +22,6 @@ const LeftNav = () => {
   useEffect(() => {
     setSelectedKeys([pathname])
     // navigate(`/${pathname}`)
-    console.log(22)
   }, [])
 
   // 生成左侧菜单 map + 递归（Recursion）
@@ -67,7 +66,6 @@ const LeftNav = () => {
     }
   }
   const handleSetSelectedKeys = (keys: string) => {
-    console.log(keys)
     // const pathname = location.pathname
     localStorage.setItem('currentPath', `/${keys}`)
     setSelectedKeys([keys])
