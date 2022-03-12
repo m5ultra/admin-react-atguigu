@@ -13,11 +13,9 @@ const Header = () => {
   useEffect(() => {
     let isUnmounted = false
     let timer = setInterval(() => {
-      console.log(11)
       !isUnmounted && setDate(dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'))
     }, 1000)
     return () => {
-      console.log(22)
       isUnmounted = true
       // @ts-ignore
       clearInterval(timer)
