@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { getWeather } from '../../api'
 import { useResolvedPath } from 'react-router-dom'
 import menuList, { IMenuItem } from '../../conf/menu.config'
-import { debuglog } from 'util'
 const Header = () => {
   const [data, setData] = useState({})
   const [title, setTitle] = useState('')
@@ -21,7 +20,6 @@ const Header = () => {
   const { pathname } = useResolvedPath(location.pathname)
 
   useEffect(() => {
-    // 获取标题适合两级结构
     let title = ''
     const getTitle = (list: IMenuItem[]) => {
       list.map((item) => {

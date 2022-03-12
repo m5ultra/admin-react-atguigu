@@ -11,7 +11,7 @@ const LeftNav = () => {
   let defaultOpenKeys: string[] = []
   const navigate = useNavigate()
 
-  const pathname = localStorage.getItem('currentPath')?.split('/admin/')[1] || 'home'
+  const pathname = localStorage.getItem('currentPath')?.substring(1) || 'home'
   if (pathname.indexOf('charts') > -1) {
     defaultOpenKeys = ['charts']
   } else if (pathname.indexOf('products') > -1) {
