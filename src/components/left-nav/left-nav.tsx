@@ -65,8 +65,9 @@ const LeftNav = () => {
     }
   }
   const handleSetSelectedKeys = (keys: string) => {
-    const pathname = location.pathname
-    localStorage.setItem('currentPath', pathname)
+    console.log(keys)
+    // const pathname = location.pathname
+    localStorage.setItem('currentPath', `/${keys}`)
     setSelectedKeys([keys])
   }
 
