@@ -2,9 +2,12 @@ import { MouseEvent } from 'react'
 import './index.less'
 import { useEffect, useState } from 'react'
 import { getWeather } from '../../api'
-import { useResolvedPath, useNavigate } from 'react-router-dom'
+import { useResolvedPath } from 'react-router-dom'
+import menuList, { IMenuItem } from '../../conf/menu.config'
+import { debuglog } from 'util'
 const Header = () => {
   const [data, setData] = useState({})
+  const [title, setTitle] = useState('')
   // @ts-ignore
   useEffect(() => {
     let isUnmount = false
@@ -16,9 +19,23 @@ const Header = () => {
     return () => (isUnmount = true)
   }, [])
   const { pathname } = useResolvedPath(location.pathname)
-  console.log(pathname)
 
-  const navigator = useNavigate()
+  useEffect(() => {
+    // 获取标题适合两级结构
+    let title = ''
+    const getTitle = (list: IMenuItem[]) => {
+      list.map((item) => {
+        if (item.key === pathname.substring(1)) {
+          title = item.title
+        }
+        if (item.children) {
+          getTitle(item.children)
+        }
+      })
+    }
+    getTitle(menuList)
+    setTitle(title)
+  })
   const handleExit = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     localStorage.removeItem('user_key')
@@ -33,7 +50,7 @@ const Header = () => {
         </a>
       </div>
       <div className="header-bottom">
-        <div className="header-bottom-left">首页</div>
+        <div className="header-bottom-left">{title}</div>
         <div className="header-bottom-right center-horizontally flex-end">
           {/*@ts-ignore*/}
           <span className="datetime">{data?.reporttime}</span>
