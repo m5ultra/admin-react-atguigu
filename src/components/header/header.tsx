@@ -1,8 +1,7 @@
-import { MouseEvent } from 'react'
+import { useEffect, useState, MouseEvent } from 'react'
 import './index.less'
-import { useEffect, useState } from 'react'
 import { getWeather } from '../../api'
-import { useResolvedPath } from 'react-router-dom'
+import { useResolvedPath, useNavigate } from 'react-router-dom'
 import menuList, { IMenuItem } from '../../conf/menu.config'
 const Header = () => {
   const [data, setData] = useState({})
@@ -34,10 +33,12 @@ const Header = () => {
     getTitle(menuList)
     setTitle(title)
   })
+  const navigator = useNavigate()
   const handleExit = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     localStorage.removeItem('user_key')
-    location.reload()
+    localStorage.removeItem('currentPath')
+    navigator('/login/', { replace: true })
   }
   return (
     <div className={'header'}>

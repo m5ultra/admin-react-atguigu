@@ -1,7 +1,7 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import * as qs from 'qs'
-import {base} from '../conf'
-import {message} from 'antd'
+import { base } from '../conf'
+import { message } from 'antd'
 // 处理错误信息
 const showStatus = (status: number) => {
   let message: string
@@ -44,7 +44,7 @@ const showStatus = (status: number) => {
   }
   return `${message}，请检查网络或联系管理员！`
 }
-let loadingCount: number = 0 // 通过loadingCount控制是否显示loading
+let loadingCount = 0 // 通过loadingCount控制是否显示loading
 // 初始化map对象 pending
 const pending = new Map()
 // ...
@@ -77,7 +77,7 @@ export const clearPending = () => {
   pending.clear()
 }
 export enum Methods {
-  POST='POST',
+  POST = 'POST',
   GET = 'GET',
   DELETE = 'DELETE',
   PUT = 'PUT',
@@ -142,7 +142,7 @@ export default (conf: IConf = defaultConf) => {
       loadingCount++
       removePending(config) // 在请求开始前，对之前的请求做检查取消操作
       addPending(config) // 将当前请求添加到 pending 中
-      let token = localStorage.getItem('token') // 获取本地token
+      const token = localStorage.getItem('token') // 获取本地token
       if (token) {
         config.headers!.Authorization = `${token}`
       }

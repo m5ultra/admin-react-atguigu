@@ -7,7 +7,7 @@ import logo from './images/logo.png'
 import { handleLogin } from '../../api'
 import memoryUtils from '../../utils/memoryUtils'
 import storageUtils from '../../utils/storageUtils'
-import { useEffect } from 'react'
+
 /**
  用户名/密码的合法性要求
  * 1.必须输入
@@ -17,20 +17,14 @@ import { useEffect } from 'react'
  * 5.验证密码一致性
  */
 const Login = () => {
-  let navigate = useNavigate()
-  useEffect(() => {
-    if (memoryUtils.user?._id) {
-      navigate('/admin', { replace: true })
-    }
-  })
-
+  const navigate = useNavigate()
   const onFinish = async (values: { username: string; password: string }) => {
     const { username, password } = values
     const result = await handleLogin(username, password)
     memoryUtils.user = result.data
     storageUtils.saveUser(result.data)
     if (+result.status === 0) {
-      navigate('/admin', { replace: true })
+      navigate('/', { replace: true })
     }
   }
   return (

@@ -14,7 +14,7 @@ export const getWeather = () => {
       // 如果成功了
       if (!err && data.info === 'OK') {
         // 取出需要的数据
-        const {lives} = data
+        const { lives } = data
         resolve(lives)
       } else {
         // 如果失败了

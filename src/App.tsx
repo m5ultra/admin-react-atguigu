@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './pages/login/login'
 import Admin from './pages/admin/admin'
 import useLoader from './hooks/useLoading'
@@ -9,9 +9,8 @@ export default () => {
       {loader}
       <Router>
         <Routes>
-          <Route path={'/*'}  element={<Admin />} />
-          <Route path={'/'}  element={<Login />} />
-
+          <Route path={'/login'} element={<Login />} />
+          <Route path={'/*'} element={<Admin />} />
         </Routes>
       </Router>
     </>

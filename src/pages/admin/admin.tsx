@@ -12,16 +12,18 @@ import User from '../user'
 import Bar from '../charts/bar'
 import Line from '../charts/line'
 import Pie from '../charts/pie'
-import Login from "../login/login"
 const { Sider, Content, Footer } = Layout
 
 const Admin = () => {
   const navigate = useNavigate()
   const user = memoryUtils.user
+  // @ts-ignore
   useEffect(() => {
-    if (!user?._id) {
-      return navigate('/')
+    let isUnmounted = false
+    if (!isUnmounted && !user?._id) {
+      navigate('/login')
     }
+    return () => (isUnmounted = true)
   }, [user?._id])
   return (
     <Layout style={{ height: '100vh' }}>

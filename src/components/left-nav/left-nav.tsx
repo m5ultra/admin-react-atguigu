@@ -18,9 +18,11 @@ const LeftNav = () => {
     defaultOpenKeys = ['products']
   }
 
+  // @ts-ignore
   useEffect(() => {
     setSelectedKeys([pathname])
-    navigate(`/${pathname}`)
+    // navigate(`/${pathname}`)
+    console.log(22)
   }, [])
 
   // 生成左侧菜单 map + 递归（Recursion）

@@ -23,7 +23,6 @@ export interface IMenuItem {
   icon: ReactNode
   isPublic?: boolean
   children?: IMenuChild[]
-
 }
 const menuList = [
   {
