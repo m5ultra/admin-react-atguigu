@@ -3,9 +3,26 @@ import './index.less'
 import { getWeather } from '../../api'
 import { useResolvedPath, useNavigate } from 'react-router-dom'
 import menuList, { IMenuItem } from '../../conf/menu.config'
+import dayjs from 'dayjs'
+
 const Header = () => {
   const [data, setData] = useState({})
   const [title, setTitle] = useState('')
+  const [date, setDate] = useState('')
+  // @ts-ignore
+  useEffect(() => {
+    let isUnmounted = false
+    let timer = setInterval(() => {
+      console.log(11)
+      !isUnmounted && setDate(dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'))
+    }, 1000)
+    return () => {
+      console.log(22)
+      isUnmounted = true
+      // @ts-ignore
+      clearInterval(timer)
+    }
+  }, [])
   // @ts-ignore
   useEffect(() => {
     let isUnmount = false
@@ -52,7 +69,7 @@ const Header = () => {
         <div className="header-bottom-left">{title}</div>
         <div className="header-bottom-right center-horizontally flex-end">
           {/*@ts-ignore*/}
-          <span className="datetime">{data?.reporttime}</span>
+          <span className="datetime">{date}</span>
           {/*@ts-ignore*/}
           <span className="city">{data?.city}</span>
           {/*@ts-ignore*/}
