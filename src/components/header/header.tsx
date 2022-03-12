@@ -2,10 +2,9 @@ import { MouseEvent } from 'react'
 import './index.less'
 import { useEffect, useState } from 'react'
 import { getWeather } from '../../api'
-import { useNavigate } from 'react-router-dom'
-
+import { useResolvedPath, useNavigate } from 'react-router-dom'
 const Header = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState({})
   // @ts-ignore
   useEffect(() => {
     let isUnmount = false
@@ -16,8 +15,10 @@ const Header = () => {
     })()
     return () => (isUnmount = true)
   }, [])
-  const navigate = useNavigate()
+  const { pathname } = useResolvedPath(location.pathname)
+  console.log(pathname)
 
+  const navigator = useNavigate()
   const handleExit = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     localStorage.removeItem('user_key')
@@ -26,7 +27,7 @@ const Header = () => {
   return (
     <div className={'header'}>
       <div className="header-top">
-        <span>欢迎，Admin</span>
+        <span>欢迎，{JSON.parse(localStorage.getItem('user_key') as string)?.username}</span>
         <a className={'exit-text'} href="#" onClick={(e) => handleExit(e)}>
           退出
         </a>

@@ -12,7 +12,7 @@ import User from '../user'
 import Bar from '../charts/bar'
 import Line from '../charts/line'
 import Pie from '../charts/pie'
-
+import Login from "../login/login"
 const { Sider, Content, Footer } = Layout
 
 const Admin = () => {
@@ -23,7 +23,6 @@ const Admin = () => {
       return navigate('/')
     }
   }, [user?._id])
-  // return <>{user?.username}</>
   return (
     <Layout style={{ height: '100vh' }}>
       <Sider>

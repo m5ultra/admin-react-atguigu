@@ -20,7 +20,7 @@ const LeftNav = () => {
 
   useEffect(() => {
     setSelectedKeys([pathname])
-    navigate(`/admin/${pathname}`)
+    navigate(`/${pathname}`)
   }, [])
 
   // 生成左侧菜单 map + 递归（Recursion）
@@ -72,7 +72,7 @@ const LeftNav = () => {
 
   return (
     <Fragment>
-      <Link to={'/admin/home'} onClick={() => handleSetSelectedKeys('home')} className={'left-nav'}>
+      <Link to={'/home'} onClick={() => handleSetSelectedKeys('home')} className={'left-nav'}>
         <div className="left-nav-header">
           <img src={Logo} alt="LOGO" />
           <h1>異星災變2</h1>
