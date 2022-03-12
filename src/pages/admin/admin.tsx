@@ -31,7 +31,7 @@ const Admin = () => {
       </Sider>
       <Layout>
         <Header />
-        <Content style={{ background: '#fff' }}>
+        <Content style={{ background: '#f2f2ff' }}>
           <Routes>
             <Route path={'/home'} element={<Home />} />
             <Route path={'products/category'} element={<Category />} />

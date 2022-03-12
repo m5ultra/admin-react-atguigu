@@ -92,3 +92,23 @@ body {
   width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, MIcrosoft YaHei, sans-serif !important;
 }
+
+.center-horizontally {
+  display: flex;
+  align-items: center;
+}
+
+.center-vertically {
+  display: flex;
+  justify-content: center;
+}
+
+.center-vertically-horizontally {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}

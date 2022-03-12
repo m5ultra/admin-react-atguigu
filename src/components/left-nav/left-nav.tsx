@@ -17,6 +17,7 @@ const LeftNav = () => {
   } else if (pathname.indexOf('products') > -1) {
     defaultOpenKeys = ['products']
   }
+
   useEffect(() => {
     setSelectedKeys([pathname])
     navigate(`/admin/${pathname}`)

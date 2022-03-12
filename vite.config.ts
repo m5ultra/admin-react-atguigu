@@ -19,6 +19,7 @@ export default defineConfig({
   ],
   server: {
     port: 8080, // 默认端口
+    open: true,
     proxy: {
       // 本地代理用的
       '/api': {
