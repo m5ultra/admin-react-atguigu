@@ -189,7 +189,7 @@ export default (conf: IConf = defaultConf) => {
     },
     async (error) => {
       if (axios.isCancel(error)) {
-        console.log('repeated request: ' + error.message)
+        console.info('repeated request: ' + error.message)
       } else {
         // 错误抛到业务代码
         error.data = {}
