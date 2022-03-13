@@ -46,7 +46,7 @@ const Header = () => {
       })
     }
     getTitle(menuList)
-    setTitle(title)
+    setTitle(() => title)
   })
   const navigator = useNavigate()
   const handleExit = (e: MouseEvent<HTMLAnchorElement>) => {
