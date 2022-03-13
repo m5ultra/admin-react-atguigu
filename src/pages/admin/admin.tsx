@@ -22,6 +22,8 @@ const Admin = () => {
     let isUnmounted = false
     if (!isUnmounted && !user?._id) {
       navigate('/login')
+    } else {
+      navigate('/home')
     }
     return () => (isUnmounted = true)
   }, [user?._id])
