@@ -94,7 +94,7 @@ interface IConf {
   isShowLoading: boolean
   method: Partial<Methods>
 }
-export default (conf: IConf = defaultConf) => {
+export default (defConf: IConf = defaultConf) => {
   /**
    * 1. 初始化一个service
    * 2. 可以自动取消请求 用户可以通过配置取消请求 // https://developer.huawei.com/consumer/cn/forum/topic/0202545523679410023 // TODO 待验证
@@ -154,7 +154,7 @@ export default (conf: IConf = defaultConf) => {
       // if (config.url!.includes('pur/contract/upload')) {
       //   config.headers!['Content-Type'] = 'multipart/form-data'
       // }
-      return Object.assign({}, config, defaultConf)
+      return Object.assign({}, config, defConf)
     },
     (error) => {
       // 错误抛到业务代码
