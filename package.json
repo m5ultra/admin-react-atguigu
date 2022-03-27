@@ -24,6 +24,7 @@
     "store": "^2.0.12"
   },
   "devDependencies": {
+    "@types/redux-persist": "^4.3.1",
     "@types/jsonp": "^0.2.1",
     "@types/node": "^17.0.13",
     "@types/qs": "^6.9.7",
