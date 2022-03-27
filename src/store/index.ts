@@ -8,6 +8,7 @@ const persistConfig = {
   key: 'test',
   storage,
 }
+// TODO 拆分
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = createStore(persistedReducer, composeWithDevTools())
 export const persistor = persistStore(store)
