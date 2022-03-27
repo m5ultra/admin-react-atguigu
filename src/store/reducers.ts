@@ -16,11 +16,11 @@ const persistConfig2 = {
 }
 // TODO 拆分
 import { combineReducers } from 'redux'
-import { reducer as a } from './a_module'
+import { reducer as home } from '../pages/home/store'
 import { reducer as b } from './b_module'
-const persistedReducerA = persistReducer(persistConfig, a)
+const homeReducer = persistReducer(persistConfig, home)
 const persistedReducerB = persistReducer(persistConfig2, b)
 export default combineReducers({
-  a: persistedReducerA,
+  home: homeReducer,
   b: persistedReducerB,
 })
