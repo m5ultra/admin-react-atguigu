@@ -7,7 +7,7 @@ const Home = () => {
   // @ts-ignore
   const { num, num2 } = useSelector((x) => x.a)
   const handleNumIncrement = () => {
-    dispatch({ type: 'increment-counter', v: { step: 10 } })
+    dispatch({ type: 'increment-counter-a', v: { step: 10 } })
   }
   return (
     <>

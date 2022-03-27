@@ -5,7 +5,7 @@ const initialState = {
 export default (state = initialState, action: { type: string; v: any }) => {
   const { type, v } = action
   switch (type) {
-    case 'increment-counter':
+    case 'increment-counter-a':
       console.log(action)
       state.num += v.step
       return { ...state }
