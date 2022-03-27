@@ -1,21 +1,9 @@
-import { useSelector } from 'react-redux'
-import { Button } from 'antd'
-import { useDispatch } from 'react-redux'
+import './home.less'
 const Home = () => {
-  const dispatch = useDispatch()
-
-  // @ts-ignore
-  const { num, num2 } = useSelector((x) => x.a)
-  const handleNumIncrement = () => {
-    dispatch({ type: 'increment-counter-a', v: { step: 10 } })
-  }
   return (
     <>
-      <Button onClick={handleNumIncrement}>
-        {num2} - Plus num - {num}
-      </Button>
+     <h1 className="home">欢迎使用硅谷后台管理系统</h1>
     </>
   )
 }
-
 export default Home

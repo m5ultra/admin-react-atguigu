@@ -1,6 +1,8 @@
-import { createStore } from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 import rootReducer from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore } from 'redux-persist'
-export const store = createStore(rootReducer, composeWithDevTools())
+const middleware: any[] = []
+
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware),))
 export const persistor = persistStore(store)
