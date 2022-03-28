@@ -6,14 +6,15 @@ import { actions } from './store'
 const Home = () => {
   const dispatch = useDispatch()
   const handleIncrement = () => {
-    dispatch(actions.incrementAction({ name: 'Dendi', age: 88 }))
+    dispatch(actions.incrementAction({ name: 'Dendi', age: 5 }))
   }
   // @ts-ignore
-  const {num} = useSelector(x => x.home)
+  const { num } = useSelector((x) => x.home)
   return (
     <>
-      <p>{num}</p>
-      <Button onClick={handleIncrement}>INCREMENT</Button>
+      <Button onClick={handleIncrement}>
+        INCREMENT ___&nbsp;&nbsp; <span style={{ color: 'red' }}>[{num}]</span>
+      </Button>
       <h1 className="home">欢迎使用硅谷后台管理系统</h1>
     </>
   )
