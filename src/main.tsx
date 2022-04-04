@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 // 使用了按需引入功能 这个就不需要了
 // import 'antd/dist/antd.less'
@@ -15,4 +15,7 @@ const vm =
       <App />
     </React.StrictMode>
   )
-ReactDOM.render(vm, document.getElementById('root'))
+const container = document.getElementById('root') as HTMLElement
+const root = createRoot(container)
+root.render(vm)
+
